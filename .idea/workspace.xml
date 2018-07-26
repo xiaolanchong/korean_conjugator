@@ -15,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="test_conjugator.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_conjugator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_conjugator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="156" column="19" lean-forward="true" selection-start-line="156" selection-start-column="19" selection-end-line="157" selection-end-column="40" />
+            <state relative-caret-position="821">
+              <caret line="188" column="21" lean-forward="true" selection-start-line="188" selection-start-column="21" selection-end-line="188" selection-end-column="21" />
               <folding>
                 <element signature="e#25#39#0" expanded="true" />
               </folding>
@@ -27,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conjugator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="conjugator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/conjugator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+            <state relative-caret-position="285">
+              <caret line="255" column="86" lean-forward="false" selection-start-line="255" selection-start-column="86" selection-end-line="255" selection-end-column="86" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -54,8 +54,8 @@
       <file leaf-file-name="stem2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stem2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-684">
-              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="202">
+              <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -90,6 +90,10 @@
       <find>get_h_irregular_stem2</find>
       <find>get_informal_polite_interrogativeget_informal_polite_interrogative</find>
       <find>SentenceFinalForm.</find>
+      <find>polite_formal_suffix</find>
+      <find>run</find>
+      <find>get_eupsh</find>
+      <find>get_present_determiner</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -98,14 +102,14 @@
         <option value="$PROJECT_DIR$/jamo.py" />
         <option value="$PROJECT_DIR$/stem2.py" />
         <option value="$PROJECT_DIR$/stem3.py" />
-        <option value="$PROJECT_DIR$/test_conjugator.py" />
         <option value="$PROJECT_DIR$/conjugator.py" />
+        <option value="$PROJECT_DIR$/test_conjugator.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="173" />
-    <option name="y" value="177" />
+    <option name="x" value="72" />
+    <option name="y" value="157" />
     <option name="width" value="1629" />
     <option name="height" value="950" />
   </component>
@@ -328,39 +332,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.22 at 22h 37m 15s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 44m 51s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.22 at 22h 38m 00s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 45m 13s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.22 at 22h 39m 58s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 45m 59s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.22 at 22h 40m 09s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 47m 47s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.22 at 22h 40m 27s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 48m 46s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.23 at 00h 04m 00s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 49m 00s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.23 at 00h 04m 21s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 51m 09s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.23 at 00h 04m 28s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 51m 45s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.23 at 00h 04m 47s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 51m 59s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_conjugator - 2018.07.23 at 00h 04m 51s.xml">
+    <history-entry file="Unittests_in_test_conjugator - 2018.07.25 at 23h 52m 44s.xml">
       <configuration name="Unittests in test_conjugator" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="173" y="177" width="1629" height="950" extended-state="0" />
+    <frame x="72" y="157" width="1629" height="950" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25046498" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -410,14 +414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stem2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-684">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jamo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-187">
@@ -426,22 +422,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_conjugator.py">
+    <entry file="file://$PROJECT_DIR$/stem2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="156" column="19" lean-forward="true" selection-start-line="156" selection-start-column="19" selection-end-line="157" selection-end-column="40" />
-          <folding>
-            <element signature="e#25#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="202">
+          <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/conjugator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+        <state relative-caret-position="285">
+          <caret line="255" column="86" lean-forward="false" selection-start-line="255" selection-start-column="86" selection-end-line="255" selection-end-column="86" />
           <folding>
             <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_conjugator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="821">
+          <caret line="188" column="21" lean-forward="true" selection-start-line="188" selection-start-column="21" selection-end-line="188" selection-end-column="21" />
+          <folding>
+            <element signature="e#25#39#0" expanded="true" />
           </folding>
         </state>
       </provider>

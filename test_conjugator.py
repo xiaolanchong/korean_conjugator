@@ -4,11 +4,12 @@ import os.path
 import unittest
 import sys
 import itertools
+import functools
 
 from stem2 import stem1_to_stem2, get_stem1
 from stem3 import stem1_to_stem3
 import conjugator
-from conjugator import get_informal_polite, SentenceFinalForm
+from conjugator import get_informal_polite, SentenceFinalForm, DeterminerForm
 
 sys.path.append(os.path.abspath('..'))
 
@@ -124,9 +125,10 @@ class TestFinalForms(unittest.TestCase):
         forms_params = list(get_form_params())
         assert(len(results) == len(forms_params))
         for params, expected in zip(forms_params, results):
-            func = SentenceFinalForm.indicative if indicative else SentenceFinalForm.interrogative
-            result = func(word, is_verb=is_verb, is_irregular=is_irregular,
-                          tense=params[0], formal=params[1], polite=params[2])
+            func = functools.partial(SentenceFinalForm.indicative, is_verb=is_verb) if indicative \
+                   else SentenceFinalForm.interrogative
+            result = func(word, is_irregular=is_irregular,
+                          tense=params[0], formal=params[2], polite=params[1])
             self.assertEqual(expected, result)
 
     def testIndicativeVowelEnding(self):
@@ -166,9 +168,41 @@ class TestFinalForms(unittest.TestCase):
         self.runFormTest(adj, is_verb=False, is_irregular=False, results=forms, indicative=False)
 
 
+class TestDeterminerForm(unittest.TestCase):
+    def testPast(self):
+        self.assertEqual('간', DeterminerForm.get('가다', tense=DeterminerForm.PAST, irregular=False))
+        self.assertEqual('먹은', DeterminerForm.get('먹다', tense=DeterminerForm.PAST, irregular=False))
+
+        self.assertEqual('자은', DeterminerForm.get('잣다', tense=DeterminerForm.PAST, irregular=True))
+        self.assertEqual('연', DeterminerForm.get('열다', tense=DeterminerForm.PAST, irregular=True))
+        self.assertEqual('마른', DeterminerForm.get('마르다', tense=DeterminerForm.PAST, irregular=True))
+        self.assertEqual('걸은', DeterminerForm.get('걷다', tense=DeterminerForm.PAST, irregular=True))
+        self.assertEqual('어떤', DeterminerForm.get('어떻다', tense=DeterminerForm.PAST, irregular=True))
+
+    def testPresent(self):
+        self.assertEqual('가는', DeterminerForm.get('가다', tense=DeterminerForm.PRESENT, irregular=False))
+        self.assertEqual('먹는', DeterminerForm.get('먹다', tense=DeterminerForm.PRESENT, irregular=False))
+
+        self.assertEqual('잣는', DeterminerForm.get('잣다', tense=DeterminerForm.PRESENT, irregular=True))
+        self.assertEqual('여는', DeterminerForm.get('열다', tense=DeterminerForm.PRESENT, irregular=True))
+        self.assertEqual('모르는', DeterminerForm.get('모르다', tense=DeterminerForm.PRESENT, irregular=True))
+        self.assertEqual('걷는', DeterminerForm.get('걷다', tense=DeterminerForm.PRESENT, irregular=True))
+
+    def testFuture(self):
+        self.assertEqual('갈', DeterminerForm.get('가다', tense=DeterminerForm.FUTURE, irregular=False))
+        self.assertEqual('먹을', DeterminerForm.get('먹다', tense=DeterminerForm.FUTURE, irregular=False))
+
+        self.assertEqual('자을', DeterminerForm.get('잣다', tense=DeterminerForm.FUTURE, irregular=True))
+        self.assertEqual('열', DeterminerForm.get('열다', tense=DeterminerForm.FUTURE, irregular=True))
+        self.assertEqual('마를', DeterminerForm.get('마르다', tense=DeterminerForm.FUTURE, irregular=True))
+        self.assertEqual('걸을', DeterminerForm.get('걷다', tense=DeterminerForm.FUTURE, irregular=True))
+        self.assertEqual('어떨', DeterminerForm.get('어떻다', tense=DeterminerForm.FUTURE, irregular=True))
+
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStem1)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStem2)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStem3)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestFinalForms)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestDeterminerForm)
     unittest.TextTestRunner(verbosity=2).run(suite)
