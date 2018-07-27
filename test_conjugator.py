@@ -9,7 +9,7 @@ import functools
 from stem2 import stem1_to_stem2, get_stem1
 from stem3 import stem1_to_stem3
 import conjugator
-from conjugator import get_informal_polite, SentenceFinalForm, DeterminerForm
+from conjugator import get_informal_polite, SentenceFinalForm, DeterminerForm, ConnectiveForm
 
 sys.path.append(os.path.abspath('..'))
 
@@ -155,6 +155,7 @@ class TestFinalForms(unittest.TestCase):
                  '많았다', '많았어', '많았어요', '많았습니다']
         self.runFormTest(adj, is_verb=False, is_irregular=False, results=forms)
 
+    # interrogative
     def testInterrogativeVerb(self):
         verb = '가다'
         forms = ['가니', '가', '가요', '갑니까',
@@ -166,6 +167,56 @@ class TestFinalForms(unittest.TestCase):
         forms = ['많니', '많아', '많아요', '많습니까',
                  '많았니', '많았어', '많았어요', '많았습니까']
         self.runFormTest(adj, is_verb=False, is_irregular=False, results=forms, indicative=False)
+
+    def testHortative(self):
+        self.assertEqual('갑시다', SentenceFinalForm.hortative('가다', conjugator.STYLE_FORMAL, conjugator.STYLE_POLITE))
+        self.assertEqual('가자', SentenceFinalForm.hortative('가다', conjugator.STYLE_FORMAL, conjugator.STYLE_NON_POLITE))
+        self.assertEqual('가요', SentenceFinalForm.hortative('가다', conjugator.STYLE_INFORMAL, conjugator.STYLE_POLITE))
+        self.assertEqual('가', SentenceFinalForm.hortative('가다', conjugator.STYLE_INFORMAL, conjugator.STYLE_NON_POLITE))
+
+    def testImperative(self):
+        self.assertEqual('갑시오', SentenceFinalForm.imperative('가다', conjugator.STYLE_FORMAL, conjugator.STYLE_POLITE))
+        self.assertEqual('가라', SentenceFinalForm.imperative('가다', conjugator.STYLE_FORMAL, conjugator.STYLE_NON_POLITE))
+        self.assertEqual('가요', SentenceFinalForm.imperative('가다', conjugator.STYLE_INFORMAL, conjugator.STYLE_POLITE))
+        self.assertEqual('가', SentenceFinalForm.imperative('가다', conjugator.STYLE_INFORMAL, conjugator.STYLE_NON_POLITE))
+
+    def testAssertive(self):
+        self.assertEqual('가겠습니다', SentenceFinalForm.assertive('가다', conjugator.STYLE_FORMAL, conjugator.STYLE_POLITE))
+        self.assertEqual('가겠다', SentenceFinalForm.assertive('가다', conjugator.STYLE_FORMAL, conjugator.STYLE_NON_POLITE))
+        self.assertEqual('가겠어요', SentenceFinalForm.assertive('가다', conjugator.STYLE_INFORMAL, conjugator.STYLE_POLITE))
+        self.assertEqual('가겠어', SentenceFinalForm.assertive('가다', conjugator.STYLE_INFORMAL, conjugator.STYLE_NON_POLITE))
+
+
+class TestConnectiveForm(unittest.TestCase):
+    def testCause(self):
+        result = ConnectiveForm.reason('가다', irregular=False)
+        self.assertEqual(['가', '가서', '가니', '가니까'], result)
+        result = ConnectiveForm.reason('먹다', irregular=False)
+        self.assertEqual(['먹어', '먹어서', '먹으니', '먹으니까'], result)
+
+    def testContrast(self):
+        result = ConnectiveForm.contrast('가다')
+        self.assertEqual(['가지만', '가는데', '가더니'], result)
+        result = ConnectiveForm.contrast('먹다')
+        self.assertEqual(['먹지만', '먹는데', '먹더니'], result)
+
+    def testConjunction(self):
+        result = ConnectiveForm.conjunction('가다')
+        self.assertEqual(['가고'], result)
+        result = ConnectiveForm.conjunction('먹다')
+        self.assertEqual(['먹고'], result)
+
+    def testCondition(self):
+        result = ConnectiveForm.condition('가다', irregular=False)
+        self.assertEqual(['가면', '가야'], result)
+        result = ConnectiveForm.condition('먹다', irregular=False)
+        self.assertEqual(['먹으면', '먹어야'], result)
+
+    def testMotive(self):
+        result = ConnectiveForm.motive('가다', irregular=False)
+        self.assertEqual(['가려고'], result)
+        result = ConnectiveForm.motive('먹다', irregular=False)
+        self.assertEqual(['먹으려고'], result)
 
 
 class TestDeterminerForm(unittest.TestCase):
@@ -205,4 +256,5 @@ if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStem3)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestFinalForms)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestDeterminerForm)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestConnectiveForm)
     unittest.TextTestRunner(verbosity=2).run(suite)

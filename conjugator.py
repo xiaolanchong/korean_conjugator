@@ -191,10 +191,10 @@ class SentenceFinalForm:
                 lambda x: stem2.get_stem1(word) + '라',
 
                 (TENSE_NON_PAST, STYLE_INFORMAL, STYLE_POLITE):
-                lambda x: stem2.get_stem2(word) + '어' + polite_ending,
+                lambda x: stem2.get_stem2(word) + polite_ending,
 
                 (TENSE_NON_PAST, STYLE_INFORMAL, STYLE_NON_POLITE):
-                lambda x: stem2.get_stem2(word) + '어'
+                lambda x: stem2.get_stem2(word)
         }
         method = conjugate_methods.get((TENSE_NON_PAST, formal, polite))
         if method:
@@ -204,7 +204,25 @@ class SentenceFinalForm:
 
     @staticmethod
     def hortative(word, formal, polite):
-        pass
+        conjugate_methods = {
+                # non-past
+                (TENSE_NON_PAST, STYLE_FORMAL, STYLE_POLITE):
+                lambda x: get_eupsi(word) + '다',
+
+                (TENSE_NON_PAST, STYLE_FORMAL, STYLE_NON_POLITE):
+                 lambda x: stem2.get_stem2(word) + '자',
+
+                (TENSE_NON_PAST, STYLE_INFORMAL, STYLE_POLITE):
+                lambda x: stem2.get_stem2(word) + polite_ending,
+
+                (TENSE_NON_PAST, STYLE_INFORMAL, STYLE_NON_POLITE):
+                lambda x: stem2.get_stem1(word)
+        }
+        method = conjugate_methods.get((TENSE_NON_PAST, formal, polite))
+        if method:
+            return method(word)
+        else:
+            raise RuntimeError(f'Assertive form of {formal}, {polite} not implemented')
 
 
 class ConnectiveForm:
@@ -222,16 +240,16 @@ class ConnectiveForm:
     @staticmethod
     def conjunction(word):
         st1 = stem2.get_stem1(word)
-        return [st1 + '지고']
+        return [st1 + '고']
 
     @staticmethod
-    def condition(word, irregular):
-        [stem3.get_stem3(word, irregular=irregular) + '면',
-         stem2.get_stem2(word, irregular=irregular) + '야']
+    def condition(word, irregular: bool):
+        return [stem3.get_stem3(word, irregular=irregular) + '면',
+                stem2.get_stem2(word, irregular=irregular) + '야']
 
     @staticmethod
-    def motive(word, irregular):
-        [stem3.get_stem3(word, irregular=irregular) + '려고']
+    def motive(word, irregular: bool):
+        return [stem3.get_stem3(word, irregular=irregular) + '려고']
 
 
 def get_past_determiner(word, irregular):
@@ -288,5 +306,15 @@ class NounForm:
     PRESENT = 2
 
     @staticmethod
-    def get(word, tense: int):
-        return word
+    def get(word, tense: int, irregular: bool):
+        if tense == NounForm.PRESENT:
+            st1 = stem2.get_stem1(word)
+            letters = jamo.decompose(st1[-1])
+            if len(letters) == 3 and letters[2] == stem2.final_l:
+                nominalization = (st1[:-1] + jamo.compose(letters[0], letters[1], 'ᆱ'))
+            else:
+                nominalization = stem2.get_stem1(word) + '음'
+            return [nominalization, stem2.get_stem1(word) + '기']
+        elif tense == NounForm.PAST:
+            past = get_past(word, irregular)
+            return [past + '음', past + '기']
