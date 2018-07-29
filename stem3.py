@@ -32,5 +32,12 @@ def stem1_to_stem3(stem1, irregular):
     return get_irregular_stem3(stem1) if irregular else get_regular_stem3(stem1)
 
 
-def get_stem3(word, irregular):
+def get_stem3(word: str, irregular: bool):
     return stem1_to_stem3(stem2.get_stem1(word), irregular)
+
+
+def get_honorific_stem(word: str, irregular: bool):
+    honorific_versions = {'마시다': '드시다', '먹다': '잡수시다'}
+    if word in honorific_versions:
+        return honorific_versions[word]
+    return get_stem3(word, irregular) + '시'

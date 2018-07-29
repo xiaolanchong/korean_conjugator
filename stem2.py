@@ -46,8 +46,13 @@ def get_t_irregular_stem2(prefix, initial, vowel):
 
 
 def get_p_irregular_stem2(prefix, initial, vowel):
+    # 롭다 - never 2 jamo, so always gets 워
+    # 곱다 and 돕다 are only producing 와
+    initial_k = 'ᄀ'
+    initial_t = 'ᄃ'
+    gopda_or_dopda = initial in (initial_k, initial_t)
     return prefix + jamo.compose(initial, vowel, None) + \
-           ('와' if is_bright_vowel(vowel) and len(prefix) == 0 else '워')
+        ('와' if is_bright_vowel(vowel) and len(prefix) == 0 and gopda_or_dopda else '워')
 
 
 def get_s_irregular_stem2(prefix, initial, vowel):

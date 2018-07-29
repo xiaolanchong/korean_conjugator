@@ -9,7 +9,7 @@ import functools
 from stem2 import stem1_to_stem2, get_stem1
 from stem3 import stem1_to_stem3
 import conjugator
-from conjugator import get_informal_polite, SentenceFinalForm, DeterminerForm, ConnectiveForm
+from conjugator import get_plain, SentenceFinalForm, DeterminerForm, ConnectiveForm
 
 sys.path.append(os.path.abspath('..'))
 
@@ -114,12 +114,12 @@ class TestFinalForms(unittest.TestCase):
         self.maxDiff = None
 
     def testInformalPolite_regular(self):
-        self.assertEqual('간다', get_informal_polite('가다', adjective=False))
-        self.assertEqual('먹는다', get_informal_polite('먹다', adjective=False))
-        self.assertEqual('논다', get_informal_polite('놀다', adjective=False))
+        self.assertEqual('간다', get_plain('가다', adjective=False))
+        self.assertEqual('먹는다', get_plain('먹다', adjective=False))
+        self.assertEqual('논다', get_plain('놀다', adjective=False))
 
-        self.assertEqual('길다', get_informal_polite('길다', adjective=True))
-        self.assertEqual('짜다', get_informal_polite('짜다', adjective=True))
+        self.assertEqual('길다', get_plain('길다', adjective=True))
+        self.assertEqual('짜다', get_plain('짜다', adjective=True))
 
     def runFormTest(self, word, is_verb, is_irregular, results, indicative=True):
         forms_params = list(get_form_params())
@@ -133,39 +133,39 @@ class TestFinalForms(unittest.TestCase):
 
     def testIndicativeVowelEnding(self):
         verb = '가다'
-        forms = ['간다', '가', '가요', '갑니다',
-                 '갔다', '갔어', '갔어요', '갔습니다']
+        forms = ['가요', '가', '간다', '갑니다',
+                 '갔어요', '갔어', '갔다', '갔습니다']
         self.runFormTest(verb, is_verb=True, is_irregular=False, results=forms)
 
     def testIndicativeConsonantEnding(self):
         verb = '먹다'
-        forms = ['먹는다', '먹어', '먹어요', '먹습니다',
-                 '먹었다', '먹었어', '먹었어요', '먹었습니다']
+        forms = ['먹어요', '먹어', '먹는다', '먹습니다',
+                 '먹었어요', '먹었어', '먹었다', '먹었습니다']
         self.runFormTest(verb, is_verb=True, is_irregular=False, results=forms)
 
     def testIndicativeLIrregular(self):
         verb = '열다'
-        forms = ['연다', '열어', '열어요', '엽니다',
-                 '열었다', '열었어', '열었어요', '열었습니다']
+        forms = ['열어요', '열어', '연다', '엽니다',
+                 '열었어요', '열었어', '열었다', '열었습니다']
         self.runFormTest(verb, is_verb=True, is_irregular=True, results=forms)
 
     def testIndicativeAdjective(self):
         adj = '많다'
-        forms = ['많다', '많아', '많아요', '많습니다',
-                 '많았다', '많았어', '많았어요', '많았습니다']
+        forms = ['많아요', '많아', '많다', '많습니다',
+                 '많았어요', '많았어', '많았다', '많았습니다']
         self.runFormTest(adj, is_verb=False, is_irregular=False, results=forms)
 
     # interrogative
     def testInterrogativeVerb(self):
         verb = '가다'
-        forms = ['가니', '가', '가요', '갑니까',
-                 '갔니', '갔어', '갔어요', '갔습니까']
+        forms = ['가요', '가', '가니', '갑니까',
+                 '갔어요', '갔어', '갔니', '갔습니까']
         self.runFormTest(verb, is_verb=True, is_irregular=False, results=forms, indicative=False)
 
     def testInterrogativeAdjective(self):
         adj = '많다'
-        forms = ['많니', '많아', '많아요', '많습니까',
-                 '많았니', '많았어', '많았어요', '많았습니까']
+        forms = ['많아요', '많아', '많니', '많습니까',
+                 '많았어요', '많았어', '많았니', '많았습니까']
         self.runFormTest(adj, is_verb=False, is_irregular=False, results=forms, indicative=False)
 
     def testHortative(self):
